@@ -1,0 +1,226 @@
+1
+00:00:01,360 --> 00:00:06,000
+the advent of big data and cloud computing 
+means that we have enormous amounts of data  
+
+2
+00:00:06,000 --> 00:00:10,800
+at our disposal many of these rich data 
+sets are available for free on the internet  
+
+3
+00:00:11,520 --> 00:00:17,600
+using cloud services such as google bigquery you 
+can easily access data on all kinds of topics  
+
+4
+00:00:17,600 --> 00:00:22,880
+including things like weather demographics 
+geospatial and medical data just to name a  
+
+5
+00:00:22,880 --> 00:00:28,640
+few in the past unlocking value from these 
+data sets required you to have a high degree  
+
+6
+00:00:28,640 --> 00:00:34,720
+of skill in writing code or complex queries 
+however with new tools like cloud data prep  
+
+7
+00:00:34,720 --> 00:00:41,200
+it is easier than ever before to wrangle this data 
+and get the insights you need today's 10 minute  
+
+8
+00:00:41,200 --> 00:00:45,760
+challenge is to gather a list of restaurants 
+pharmacies and banks in your neighborhood  
+
+9
+00:00:45,760 --> 00:00:50,560
+you must collect the names addresses and phone 
+numbers of these amenities into a spreadsheet  
+
+10
+00:00:50,560 --> 00:00:57,200
+can you do it well the clock is ticking so let's 
+go you can begin by following the github link in  
+
+11
+00:00:57,200 --> 00:01:04,080
+the video description below the first step is to 
+go to openstreetmap.org open this up in a new tab
+
+12
+00:01:06,240 --> 00:01:09,680
+and here enter the address that 
+you want to center the search on  
+
+13
+00:01:10,320 --> 00:01:13,920
+for this demo i'm going to type 
+in times square in new york
+
+14
+00:01:17,040 --> 00:01:23,120
+and once you find the location click on 
+it and select the little information icon  
+
+15
+00:01:23,840 --> 00:01:30,000
+this will reveal the latitude and longitude 
+of the location copy this to your clipboard
+
+16
+00:01:33,360 --> 00:01:40,160
+go back to the github page 
+and open up the spreadsheet  
+
+17
+00:01:40,160 --> 00:01:56,240
+make a copy of this spreadsheet into your 
+google drive now go to clouddataprep.com  
+
+18
+00:01:57,760 --> 00:02:02,560
+if you are going here for the first time you 
+will need to set up your google cloud project
+
+19
+00:02:04,960 --> 00:02:10,160
+once you are in the main user interface 
+go to the flows pane and this is where  
+
+20
+00:02:10,160 --> 00:02:15,440
+we will import the flow the flow 
+can be found on the github page
+
+21
+00:02:18,480 --> 00:02:35,840
+download this to your local machine 
+and upload it into cloud data prep
+
+22
+00:02:48,720 --> 00:02:56,480
+add an output to the recipe and in the output 
+options we will select a publishing action
+
+23
+00:03:01,520 --> 00:03:03,840
+add a publishing action for bigquery
+
+24
+00:03:06,080 --> 00:03:07,440
+choose the default schema
+
+25
+00:03:10,560 --> 00:03:14,800
+and create a new table this 
+will be a parameterized table
+
+26
+00:03:17,360 --> 00:03:21,200
+and we will insert a parameter to represent the
+
+27
+00:03:24,800 --> 00:03:32,160
+we will have a variable to represent the 
+amenity and we will give it a default value of
+
+28
+00:03:32,160 --> 00:03:45,840
+restaurant
+
+29
+00:03:54,800 --> 00:04:00,080
+you can now run a job for each amenity we 
+begin with the first one which is restaurant  
+
+30
+00:04:00,640 --> 00:04:03,760
+you can specify the distance 
+in meters from the center  
+
+31
+00:04:04,400 --> 00:04:13,840
+and also enter the latitude and longitude 
+that we got from openstreetmaps earlier
+
+32
+00:04:18,480 --> 00:04:27,840
+and i'm also going to select the type of server in 
+this case we will pick n1 standard 4 and run this
+
+33
+00:04:30,640 --> 00:04:34,400
+repeat this for each amenity 
+so we did just restaurants  
+
+34
+00:04:34,400 --> 00:04:41,840
+the next one would be bank and pharmacy 
+you can run multiple jobs in parallel
+
+35
+00:04:46,480 --> 00:04:51,520
+while the job is running in the background let 
+me quickly show you what the flow looks like
+
+36
+00:04:55,120 --> 00:05:02,160
+it consists of a data set object which points to 
+open street maps this is built off of a custom  
+
+37
+00:05:02,160 --> 00:05:10,080
+sql statement which has parameters built in for 
+longitude latitude and distance in meters if  
+
+38
+00:05:10,080 --> 00:05:16,880
+you look at the recipe itself it has a few steps 
+the first few steps actually convert the data to  
+
+39
+00:05:16,880 --> 00:05:24,320
+tabular format then it applies filters on the 
+specific amenity that we enter as a parameter  
+
+40
+00:05:24,320 --> 00:05:28,880
+and then finally we format the column 
+names and make it suitable for bigquery  
+
+41
+00:05:30,000 --> 00:05:35,360
+at this point all the jobs have finished 
+executing you can go to google sheets  
+
+42
+00:05:35,360 --> 00:05:51,840
+and add a data connector for each of the 
+tables in bigquery that you just created
+
+43
+00:06:19,520 --> 00:06:23,920
+if you followed all the steps you now have a 
+handy spreadsheet with a list of restaurants  
+
+44
+00:06:23,920 --> 00:06:29,920
+banks and pharmacies near your home pretty useful 
+if you ask me congratulations on completing the  
+
+45
+00:06:29,920 --> 00:06:34,720
+10 minute challenge if you enjoyed this 
+video please give it a thumbs up and be  
+
+46
+00:06:34,720 --> 00:06:39,920
+sure to subscribe to the trifacta channel for 
+more awesome videos thank you for watching
+
